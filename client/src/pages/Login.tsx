@@ -1,16 +1,21 @@
 import React from "react";
 
+import { AuthContainer, AuthTitle, AuthForm } from "../styles/auth";
+import { Link } from "react-router-dom";
+
 const Login = () => {
     return (
-        <div className="auth">
-            <h1> Login</h1>
-            <form>
+        <AuthContainer>
+            <AuthTitle> Login</AuthTitle>
+            <AuthForm>
                 <input type="text" placeholder="username" />
                 <input type="text" placeholder="password" />
                 <button>Sign in</button>
-            </form>
+                <p>This is an error!</p>
+                <span>Don't you have an account? <Link to="/register">Register</Link></span>
+            </AuthForm>
 
-        </div>
+        </AuthContainer>
     )
 }
 

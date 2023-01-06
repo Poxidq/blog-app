@@ -12,6 +12,8 @@ import Single from "./pages/Single";
 import Write from "./pages/Write";
 import Layout from "./components/Layout";
 
+import Global from "./styles/global";
+
 const router = createRouter([
   {
     path: "/",
@@ -44,6 +46,7 @@ const router = createRouter([
 function App() {
   return (
     <div>
+      <Global />
       <RouterProvider router={router} />
     </div>
   );
