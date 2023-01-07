@@ -2,8 +2,8 @@ import React from "react";
 import {
   createBrowserRouter as createRouter,
   RouterProvider,
-  Route,
 } from "react-router-dom";
+import styled from "styled-components";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -13,6 +13,18 @@ import Write from "./pages/Write";
 import Layout from "./components/Layout";
 
 import Global from "./styles/global";
+import { variables } from "./styles/variables";
+
+const AppBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: ${variables.black};
+  min-height: 100vh;
+`
+
+const Container = styled.div`
+  width: 90%;
+`
 
 const router = createRouter([
   {
@@ -45,10 +57,12 @@ const router = createRouter([
 
 function App() {
   return (
-    <div>
-      <Global />
-      <RouterProvider router={router} />
-    </div>
+    <AppBlock>
+      <Container>
+        <Global />
+        <RouterProvider router={router} />
+      </Container>
+    </AppBlock>
   );
 }
 
