@@ -1,4 +1,4 @@
-# This is sample blog project 
+# This is just a sample blog project 
 
 ### Spices:
 * React.js
