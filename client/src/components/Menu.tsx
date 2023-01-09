@@ -1,10 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
 
-import { HomeComponent, HomePosts, HomePostContent, HomePostImageComponent, HomePost } from "../styles/home";
+import { MenuComponent, MenuPostComponent } from '../styles/menu';
 
-
-const Home = () => {
+function Menu() {
     // sample data to check design
     const posts = [
         {
@@ -33,27 +31,17 @@ const Home = () => {
         },
     ];
     return (
-        <HomeComponent>
-            <HomePosts>
-                {posts.map((post) => (
-                    <HomePost key={post.id}>
-                            <HomePostImageComponent>
-                                <img src={post.img} alt="" />
-                            </HomePostImageComponent>
-                        <HomePostContent>
-                            <Link to={`/post/${post.id}`}>
-                                <h1>{post.title}</h1>
-                            </Link>
-                            <p>{post.desc}</p>
-                            <Link to={`/post/${post.id}`}>
-                                <button>Read More</button>
-                            </Link>
-                        </HomePostContent>
-                    </HomePost>
-                ))}
-            </HomePosts>
-        </HomeComponent>
+        <MenuComponent>
+            <h1>Other posts you may like</h1>
+            {posts.map((post) => (
+                <MenuPostComponent key={post.id}>
+                    <img src={post?.img} alt="" />
+                    <h2>{post.title}</h2>
+                    <button>Read More</button>
+                </MenuPostComponent>
+            ))}
+        </MenuComponent>
     )
 }
 
-export default Home;
+export default Menu

@@ -21,8 +21,8 @@ export const NavbarLinks = styled.div`
   justify-content: flex-end;
 
   h6 {
-    font-size: 16px;
-    font-weight: 300;
+    font-size: 18px;
+    font-weight: 400;
     margin: 0;
     padding: 0;
   }

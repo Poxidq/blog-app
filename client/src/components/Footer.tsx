@@ -9,7 +9,7 @@ const Footer = () => {
             <img src={logo} alt="..." />
             <span>
                 "Why should I apologize for being a monster? <br /> Has anyone ever apologized for turning me into one?"
-                <p style={{ marginTop: "2rem" }}>- Juuzou Suzuya</p>
+                {/* <p style={{ marginTop: "2rem" }}>- Juuzou Suzuya</p> */}
             </span>
         </FooterComponent>
     )

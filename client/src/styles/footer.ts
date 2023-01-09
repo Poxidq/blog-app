@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { variables } from "./variables";
 
 export const FooterComponent = styled.footer`
-  margin-top: 100px;
+  margin-top: 7.5rem;
   padding: 20px;
   background-color: ${variables.gray};
   color: ${variables.white};
