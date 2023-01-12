@@ -39,3 +39,12 @@ CREATE TABLE `blog_app`.`posts` (
     ON UPDATE CASCADE);
 
 ```
+
+### Some examples of requests using `curl`:
+
+```bash
+# POST: /api/auth/register
+curl -X POST http://localhost:3000/api/auth/register -H "Content-Type: application/json" -d '{"email": "pomidorka@salt.com", "username": "carrot", "password": "123""}'
+# POST UPDATE: /api/posts/:id
+curl -X PUT --cookie "access_token={token_from_/api/login}" http://localhost:3000/api/posts/3 -H "Content-Type: application/json" -d '{"title": "New title", "desc": "New description", "img": "new image", "cat": "science"}'
+```

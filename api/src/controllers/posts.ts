@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response } from "express";
-import { db } from "../db.js";
 import jwt from "jsonwebtoken";
+
+import { db } from "../db";
 
 export const getPosts = (req: Request, res: Response) => {
   const q = req.query.cat
@@ -76,7 +76,6 @@ export const updatePost = (req: Request, res: Response) => {
 
   jwt.verify(token, "jwtkey", (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid!");
-
     const postId = req.params.id;
     const q =
       "UPDATE posts SET `title`=?,`desc`=?,`img`=?,`cat`=? WHERE `id` = ? AND `uid` = ?";

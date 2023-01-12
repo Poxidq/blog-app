@@ -10,7 +10,7 @@ import errorHandler from "./middleware/errorHandler";
 import fourOhFour from "./middleware/fourOhFour";
 
 import postRoutes from "./routes/posts";
-// import authRoutes from "./routes/auth";
+import authRoutes from "./routes/auth";
 // import userRoutes from "./routes/users";
 
 const app = express();
@@ -21,7 +21,6 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    // @ts-ignore
     origin: config.clientOrigins[config.nodeEnv],
   })
 );
@@ -48,7 +47,7 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
   }
 });
 // Apply routes before error handling
-// app.use("/api/auth", authRoutes);
+app.use("/api/auth", authRoutes);
 // app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
