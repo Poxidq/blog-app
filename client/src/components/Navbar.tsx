@@ -1,10 +1,15 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useContext } from 'react'
 import { Link } from 'react-router-dom';
 
-import { NavbarContainer, NavbarLogo, NavbarLinks, NavbarWrite } from "../styles/navbar";
+
+import { AuthContext } from '../context/authContext';
+
+import { NavbarContainer, NavbarLogo, NavbarLinks, NavbarWrite, NavbarSpan } from "../styles/navbar";
 import logo from "../media/ghost.png";
 
 const Navbar: FunctionComponent = () => {
+    const { currentUser, logout } = useContext(AuthContext);
+
     return (
         <NavbarContainer>
             <NavbarLogo>
@@ -31,14 +36,14 @@ const Navbar: FunctionComponent = () => {
                 <Link className="link" to="/?cat=food">
                     <h6>FOOD</h6>
                 </Link>
-                {/* <span>{currentUser?.username}</span>
-                    {currentUser ? (
-                        <span onClick={logout}>Logout</span>
-                    ) : ( */}
-                <Link className="link" to="/login">
-                    <h6>Login</h6>
-                </Link>
-                {/* )} */}
+                <NavbarSpan>{currentUser?.username}</NavbarSpan>
+                {currentUser ? (
+                    <NavbarSpan onClick={logout}>Logout</NavbarSpan>
+                ) : (
+                    <Link className="link" to="/login">
+                        <h6>Login</h6>
+                    </Link>
+                )}
                 <NavbarWrite>
                     <Link className="link" to="/write">
                         Write

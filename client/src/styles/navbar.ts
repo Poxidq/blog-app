@@ -32,7 +32,6 @@ export const NavbarLinks = styled.div`
   }
   a {
     text-decoration: none;
-
   }
   & > a {
     text-decoration: none;
@@ -70,5 +69,22 @@ export const NavbarWrite = styled.span`
 
   a {
     color: ${variables.black};
+  }
+`;
+
+export const NavbarSpan = styled.span`
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+  color: ${variables.white};
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: ${variables.black};
+    background: ${variables.white};
   }
 `;

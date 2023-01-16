@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import ReactQuill from 'react-quill';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from "axios";
+import moment from "moment";
+
+import { AuthContext } from '../context/authContext';
 
 import 'react-quill/dist/quill.snow.css';
 
@@ -12,7 +16,45 @@ export default function Write() {
     const [title, setTitle] = useState(state?.desc || "");
     const [file, setFile] = useState(null);
     const [cat, setCat] = useState(state?.cat || "");
-    console.log(file);
+    const navigate = useNavigate();
+
+    const { currentUser } = useContext(AuthContext);
+
+    const upload = async () => {
+        try {
+            const formData = new FormData();
+            formData.append("file", file || "");
+            const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/posts/upload`, formData);
+            return res.data;
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleClick = async (e: any) => {
+        e.preventDefault();
+        const imgUrl: string = await upload();
+        console.log("IMGURL: ", imgUrl);
+        try {
+            state
+                ? await axios.put(`${import.meta.env.VITE_SERVER_URL}/api/posts/${state.id}`, {
+                    title,
+                    desc: value,
+                    cat,
+                    img: file ? imgUrl : "",
+                })
+                : await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/posts/`, {
+                    title,
+                    desc: value,
+                    cat,
+                    img: file ? imgUrl : "",
+                    date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+                });
+            navigate("/")
+        } catch (err) {
+            console.log(err);
+        }
+    };
     return (
         <AddComponent>
 
@@ -20,6 +62,7 @@ export default function Write() {
                 <input
                     type="text"
                     placeholder="Title"
+                    value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
                 <AddEditorContainer>
@@ -50,8 +93,8 @@ export default function Write() {
                         Upload Image
                     </AddMenuItemFile>
                     <AddMenuItemButtons>
-                        <button>Save as a draft</button>
-                        <button onClick={(e: any) => console.log(e.target)}>Publish</button>
+                        {/* <button>Save as a draft</button> */}
+                        <button onClick={handleClick}>Publish</button>
                     </AddMenuItemButtons>
                 </AddMenuItem>
                 <AddMenuItem>

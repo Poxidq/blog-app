@@ -28,9 +28,12 @@ export const getPost = (req: Request, res: Response) => {
 
 export const addPost = (req: Request, res: Response) => {
   const token = req.cookies.access_token;
+  console.log("cookies?", req.cookies);
+  console.log("[add post] token: ", token);
   if (!token) return res.status(401).json("Not authenticated!");
 
-  jwt.verify(token, "jwtkey", (err, userInfo) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  jwt.verify(token, "jwtkey", (err: any, userInfo: any) => {
     if (err) return res.status(403).json("Token is not valid!");
 
     const q =
@@ -45,6 +48,7 @@ export const addPost = (req: Request, res: Response) => {
       userInfo.id,
     ];
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     db.query(q, [values], (err, _data) => {
       if (err) return res.status(500).json(err);
       return res.json("Post has been created.");
@@ -62,6 +66,7 @@ export const deletePost = (req: Request, res: Response) => {
     const postId = req.params.id;
     const q = "DELETE FROM posts WHERE `id` = ? AND `uid` = ?";
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     db.query(q, [postId, userInfo.id], (err, _data) => {
       if (err) return res.status(403).json("You can delete only your post!");
 
@@ -72,6 +77,7 @@ export const deletePost = (req: Request, res: Response) => {
 
 export const updatePost = (req: Request, res: Response) => {
   const token = req.cookies.access_token;
+  console.log("[update post] token: ", token);
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, "jwtkey", (err, userInfo) => {
@@ -82,9 +88,21 @@ export const updatePost = (req: Request, res: Response) => {
 
     const values = [req.body.title, req.body.desc, req.body.img, req.body.cat];
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     db.query(q, [...values, postId, userInfo.id], (err, _data) => {
       if (err) return res.status(500).json(err);
       return res.json("Post has been updated.");
     });
   });
+};
+
+export const uploadPost = (req: Request, res: Response) => {
+  // console.log("AAAAAAAA==", JSON.stringify(req.body));
+  const file = req.body.formData;
+  const filename = "req.body.data.title +  + req.body.data.id";
+  if (file != undefined) {
+    res.status(200).json(filename);
+  } else {
+    res.status(200).json({ message: "Upload failed" });
+  }
 };
