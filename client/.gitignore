@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 .env
-./public/upload
+public/upload
 
 # Editor directories and files
 .vscode/*
