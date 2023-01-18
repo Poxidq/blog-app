@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import { PostsItem } from "../@types/posts";
+import { PostsItem } from "types/posts";
 
-import { MenuComponent, MenuPostComponent } from '../styles/menu';
+import { MenuComponent, MenuPostComponent } from "@styles/menu";
 
-function Menu({ cat }: { cat: string }) {
+function Menu({ cat, parentId }: { cat: string, parentId: number }) {
     const [posts, setPosts] = useState<Array<PostsItem>>([]);
 
     useEffect(() => {
@@ -23,9 +23,9 @@ function Menu({ cat }: { cat: string }) {
     return (
         <MenuComponent>
             <h1>Other posts you may like</h1>
-            {posts.map((post) => (
+            {posts.filter((item) => item?.id != parentId).map((post) => (
                 <MenuPostComponent key={post?.id}>
-                    <img src={post?.img} alt="" />
+                    <img src={`../upload/${post?.img}`} alt="" />
                     <h2>{post?.title}</h2>
                     <Link to="/"><button>Read More</button></Link>
                 </MenuPostComponent>

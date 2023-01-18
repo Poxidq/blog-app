@@ -4,14 +4,14 @@ import axios from 'axios'
 import DOMPurify from "dompurify";
 import moment from "moment";
 
-import { SinglePost } from "../@types/posts.d"
+import { SinglePost } from "types/posts"
 
-import Menu from '../components/Menu'
-import { AuthContext } from '../context/authContext'
+import Menu from '@components/Menu'
+import { AuthContext } from '@context/authContext'
 
-import Edit from "../media/edit_icon.png";
-import Delete from "../media/delete_icon.svg";
-import { SingleComponent, SingleContentComponent, SingleEditComponent, SingleInfoComponent, SingleUserComponent } from '../styles/single';
+import Edit from "@media/edit_icon.png";
+import Delete from "@media/delete_icon.svg";
+import { SingleComponent, SingleContentComponent, SingleEditComponent, SingleInfoComponent, SingleUserComponent } from '@styles/single';
 
 export default function Single() {
   const [post, setPost] = useState<SinglePost>();
@@ -54,7 +54,7 @@ export default function Single() {
         <img src={`../upload/${post?.img}`} alt="" />
         <SingleUserComponent>
           {post?.userImg && <img
-            src={post.userImg}
+            src={`../upload/${post.userImg}`}
             alt=""
           />}
           <SingleInfoComponent>
@@ -76,7 +76,7 @@ export default function Single() {
         }}>
         </p>
       </SingleContentComponent>
-      <Menu cat={post?.cat || ""} />
+      <Menu cat={post?.cat || ""} parentId={post?.id || -1} />
     </SingleComponent>
   )
 }

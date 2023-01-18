@@ -16,5 +16,13 @@ export default defineConfig(({ command, mode }) => {
       __APP_ENV__: env.APP_ENV,
     },
     plugins: [react()],
+    proxy: {
+      "/api": {
+        target: "https://localhost:3000",
+        changeOrigin: false,
+        secure: false,
+        ws: true,
+      },
+    },
   };
 });

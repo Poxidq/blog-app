@@ -2,10 +2,10 @@ import React, { FunctionComponent, useContext } from 'react'
 import { Link } from 'react-router-dom';
 
 
-import { AuthContext } from '../context/authContext';
+import { AuthContext } from '@context/authContext';
 
-import { NavbarContainer, NavbarLogo, NavbarLinks, NavbarWrite, NavbarSpan } from "../styles/navbar";
-import logo from "../media/ghost.png";
+import { NavbarContainer, NavbarLogo, NavbarLinks, NavbarWrite, NavbarSpan } from "@styles/navbar";
+import logo from "@media/ghost.png";
 
 const Navbar: FunctionComponent = () => {
     const { currentUser, logout } = useContext(AuthContext);

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { FooterComponent } from '../styles/footer';
-import logo from "../media/footer_icon.gif";
+import { FooterComponent } from '@styles/footer';
+import logo from "@media/footer_icon.gif";
 
 const Footer = () => {
     return (

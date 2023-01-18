@@ -1,30 +1,47 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import ReactQuill from 'react-quill';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import moment from "moment";
 
-import { AuthContext } from '../context/authContext';
+// import { AuthContext } from '../context/authContext';
+import { PostsItem } from "types/posts.d"
 
 import 'react-quill/dist/quill.snow.css';
 
-import { AddComponent, AddContentComponent, AddEditorContainer, AddMenu, AddCatComponent, AddMenuItem, AddMenuItemButtons, AddMenuItemFile } from '../styles/write';
+import { AddComponent, AddContentComponent, AddEditorContainer, AddMenu, AddCatComponent, AddMenuItem, AddMenuItemButtons, AddMenuItemFile } from '@styles/write';
+
+axios.defaults.withCredentials = true;
 
 export default function Write() {
-    const state = useLocation().state;
+    // validate data
+    const state = useLocation();
     const [value, setValue] = useState("");
-    const [title, setTitle] = useState(state?.desc || "");
+    const [title, setTitle] = useState("");
     const [file, setFile] = useState(null);
-    const [cat, setCat] = useState(state?.cat || "");
+    const [cat, setCat] = useState("");
     const navigate = useNavigate();
 
-    const { currentUser } = useContext(AuthContext);
+    useEffect(() => {
+        const _id = state.search.split("=")[1].length > 0 ? state.search.split("=")[1] : "";
+        const fetchData = async () => {
+            const data: PostsItem = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/posts/${_id}`)
+            setValue(data?.desc);
+            setTitle(data?.title);
+        };
+        fetchData();
+    }, [])
 
+    // const { currentUser } = useContext(AuthContext);
     const upload = async () => {
         try {
             const formData = new FormData();
             formData.append("file", file || "");
+            console.log("WRITE FILE CONSOLE LOGGGGG file:");
+            console.dir(file);
             const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/posts/upload`, formData);
+            console.log("res: ", res);
+            console.dir(res);
             return res.data;
         } catch (err) {
             console.log(err);
@@ -36,8 +53,8 @@ export default function Write() {
         const imgUrl: string = await upload();
         console.log("IMGURL: ", imgUrl);
         try {
-            state
-                ? await axios.put(`${import.meta.env.VITE_SERVER_URL}/api/posts/${state.id}`, {
+            state.search.length != 0
+                ? await axios.put(`${import.meta.env.VITE_SERVER_URL}/api/posts/${state.search.split("=")[1]}`, {
                     title,
                     desc: value,
                     cat,

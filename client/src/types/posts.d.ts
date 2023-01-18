@@ -3,6 +3,7 @@ export interface PostsItem {
   title: string;
   desc: string;
   img: string;
+  cat?: string;
 }
 
 export interface SinglePost {

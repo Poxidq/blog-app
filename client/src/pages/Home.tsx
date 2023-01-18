@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
-import { PostsItem } from "../@types/posts.d"
+import { PostsItem } from "types/posts"
 
-import { HomeComponent, HomePosts, HomePostContent, HomePostImageComponent, HomePost } from "../styles/home";
+import { HomeComponent, HomePosts, HomePostContent, HomePostImageComponent, HomePost } from "@styles/home";
 
 const Home = () => {
     const [posts, setPosts] = useState<Array<PostsItem>>([]);
@@ -32,7 +32,7 @@ const Home = () => {
                 {posts.map((post) => (
                     <HomePost key={post.id}>
                         <HomePostImageComponent>
-                            <img src={post.img} alt="" />
+                            <img src={`upload/${post.img}`} alt="" />
                         </HomePostImageComponent>
                         <HomePostContent>
                             <Link to={`/post/${post.id}`}>

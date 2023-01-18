@@ -28,8 +28,8 @@ export const getPost = (req: Request, res: Response) => {
 
 export const addPost = (req: Request, res: Response) => {
   const token = req.cookies.access_token;
-  console.log("cookies?", req.cookies);
-  console.log("[add post] token: ", token);
+  // console.log("cookies?", req.cookies);
+  // console.log("[add post] token: ", token);
   if (!token) return res.status(401).json("Not authenticated!");
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -77,7 +77,7 @@ export const deletePost = (req: Request, res: Response) => {
 
 export const updatePost = (req: Request, res: Response) => {
   const token = req.cookies.access_token;
-  console.log("[update post] token: ", token);
+  // console.log("[update post]  params: ", req.params);
   if (!token) return res.status(401).json("Not authenticated!");
 
   jwt.verify(token, "jwtkey", (err, userInfo) => {
@@ -96,12 +96,14 @@ export const updatePost = (req: Request, res: Response) => {
   });
 };
 
-export const uploadPost = (req: Request, res: Response) => {
-  // console.log("AAAAAAAA==", JSON.stringify(req.body));
-  const file = req.body.formData;
-  const filename = "req.body.data.title +  + req.body.data.id";
+export const uploadPost = async (req: Request, res: Response) => {
+  const file = req.file;
+  console.log("FIle upload: ", file);
+  console.log("FIle upload: ");
+  console.dir(req.body);
   if (file != undefined) {
-    res.status(200).json(filename);
+    console.log("sending response to upload");
+    res.status(200).json(file.filename);
   } else {
     res.status(200).json({ message: "Upload failed" });
   }

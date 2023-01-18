@@ -47,10 +47,12 @@ export const login = (req: Request, res: Response) => {
       return res.status(400).json("Wrong username or password!");
 
     const token = jwt.sign({ id: data[0].id }, "jwtkey");
+    // console.log("created token: ", token);
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     const { _password, ...other } = data[0];
+    // console.log("Other: ", other);
     res
-      .cookie("access_token", token)
+      .cookie("access_token", token, { httpOnly: false })
       .status(200)
       .json(other);
   });

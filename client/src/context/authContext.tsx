@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 
-import { IAuthContext, defaultState } from '../@types/authContext.d';
+import { IAuthContext, defaultState } from 'types/authContext';
 
 export const AuthContext = createContext<IAuthContext>(defaultState);
 

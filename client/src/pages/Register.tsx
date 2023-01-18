@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "@context/authContext";
 
-import { AuthContainer, AuthTitle, AuthForm } from "../styles/auth";
+import { AuthContainer, AuthTitle, AuthForm } from "@styles/auth";
 
 const Register = () => {
   const [inputs, setInputs] = useState({
