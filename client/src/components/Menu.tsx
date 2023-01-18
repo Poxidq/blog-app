@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import { PostsItem } from "types/posts";
+import { PostsItem } from "@/types/posts.d";
 
-import { MenuComponent, MenuPostComponent } from "@styles/menu";
+import { MenuComponent, MenuPostComponent } from "@/styles/menu";
 
 function Menu({ cat, parentId }: { cat: string, parentId: number }) {
     const [posts, setPosts] = useState<Array<PostsItem>>([]);

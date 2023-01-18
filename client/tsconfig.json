@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": [
@@ -21,20 +20,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "types/*": [
-        "src/types/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@context/*": [
-        "src/context/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@media/*": [
-        "src/media/*"
+      "@/*": [
+        "./src/*"
       ],
     }
   },

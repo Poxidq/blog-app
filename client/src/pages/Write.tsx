@@ -5,11 +5,11 @@ import axios from "axios";
 import moment from "moment";
 
 // import { AuthContext } from '../context/authContext';
-import { PostsItem } from "types/posts.d"
+import { PostsItem } from "@/types/posts.d"
 
 import 'react-quill/dist/quill.snow.css';
 
-import { AddComponent, AddContentComponent, AddEditorContainer, AddMenu, AddCatComponent, AddMenuItem, AddMenuItemButtons, AddMenuItemFile } from '@styles/write';
+import { AddComponent, AddContentComponent, AddEditorContainer, AddMenu, AddCatComponent, AddMenuItem, AddMenuItemButtons, AddMenuItemFile } from '@/styles/write';
 
 axios.defaults.withCredentials = true;
 

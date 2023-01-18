@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
-import { PostsItem } from "types/posts"
+import { PostsItem } from "@/types/posts.d"
 
-import { HomeComponent, HomePosts, HomePostContent, HomePostImageComponent, HomePost } from "@styles/home";
+import { HomeComponent, HomePosts, HomePostContent, HomePostImageComponent, HomePost } from "@/styles/home";
 
 const Home = () => {
     const [posts, setPosts] = useState<Array<PostsItem>>([]);

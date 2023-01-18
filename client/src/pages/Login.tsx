@@ -1,9 +1,9 @@
 import React, { ErrorInfo, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { AuthContext } from "@context/authContext";
+import { AuthContext } from "@/context/authContext";
 
-import { AuthContainer, AuthTitle, AuthForm } from "@styles/auth";
+import { AuthContainer, AuthTitle, AuthForm } from "@/styles/auth";
 const Login = () => {
     const [inputs, setInputs] = useState({
         username: "",
