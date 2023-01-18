@@ -10,7 +10,7 @@ const Register = () => {
     username: "",
     password: "",
     email: "",
-  })
+  });
   const [err, setError] = useState(null);
   const navigate = useNavigate();
   const { register } = useContext(AuthContext);
@@ -21,7 +21,7 @@ const Register = () => {
   const handleSubmit = async (e: React.ChangeEvent<any>) => {
     e.preventDefault();
     try {
-      await register(inputs)
+      await register(inputs);
       navigate("/login");
     } catch (err: any) {
       setError(err.response.data);
@@ -31,16 +31,35 @@ const Register = () => {
     <AuthContainer>
       <AuthTitle>Register</AuthTitle>
       <AuthForm>
-        <input required type="text" placeholder="username" name="username" onChange={handleChange} />
-        <input required type="text" placeholder="email" name="email" onChange={handleChange} />
-        <input required type="text" placeholder="password" name="password" onChange={handleChange} />
+        <input
+          required
+          type="text"
+          placeholder="username"
+          name="username"
+          onChange={handleChange}
+        />
+        <input
+          required
+          type="text"
+          placeholder="email"
+          name="email"
+          onChange={handleChange}
+        />
+        <input
+          required
+          type="password"
+          placeholder="password"
+          name="password"
+          onChange={handleChange}
+        />
         <button onClick={handleSubmit}>Sign in</button>
         {err && <p>{err}</p>}
-        <span>Do you have an account? <Link to="/login">Login</Link></span>
+        <span>
+          Do you have an account? <Link to="/login">Login</Link>
+        </span>
       </AuthForm>
-
     </AuthContainer>
-  )
-}
+  );
+};
 
 export default Register;

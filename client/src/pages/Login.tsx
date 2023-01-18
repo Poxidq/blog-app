@@ -31,7 +31,7 @@ const Login = () => {
             <AuthForm>
                 <input type="text" placeholder="username" name="username"
                     onChange={handleChange} />
-                <input type="text" placeholder="password" name="password" onChange={handleChange} />
+                <input type="password" placeholder="password" name="password" onChange={handleChange} />
                 <button onClick={handleSubmit}>Sign in</button>
                 {err && <p>{err}</p>}
                 <span>Don't you have an account? <Link to="/register">Register</Link></span>
