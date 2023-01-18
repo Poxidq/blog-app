@@ -4,6 +4,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import styled from "styled-components";
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -25,6 +26,9 @@ const AppBlock = styled.div`
 const Container = styled.div`
   width: 90%;
 `
+
+const queryClient = new QueryClient()
+
 
 const router = createRouter([
   {
@@ -57,12 +61,14 @@ const router = createRouter([
 
 function App() {
   return (
-    <AppBlock>
-      <Container>
-        <Global />
-        <RouterProvider router={router} />
-      </Container>
-    </AppBlock>
+    <QueryClientProvider client={queryClient}>
+      <AppBlock>
+        <Container>
+          <Global />
+          <RouterProvider router={router} />
+        </Container>
+      </AppBlock>
+    </QueryClientProvider>
   );
 }
 

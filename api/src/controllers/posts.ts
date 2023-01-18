@@ -87,7 +87,7 @@ export const updatePost = (req: Request, res: Response) => {
       "UPDATE posts SET `title`=?,`desc`=?,`img`=?,`cat`=? WHERE `id` = ? AND `uid` = ?";
 
     const values = [req.body.title, req.body.desc, req.body.img, req.body.cat];
-
+    console.log("Values in update post: ", JSON.stringify(values));
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     db.query(q, [...values, postId, userInfo.id], (err, _data) => {
       if (err) return res.status(500).json(err);
