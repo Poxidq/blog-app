@@ -18,7 +18,7 @@
   cd ../server && npm install
   # edit all .env.sample files and rename to .env
 ```
-After steps above you need to configure the **mysql database** (also change the config in _api/src/db.json_): 
+After steps above you need to configure the **mysql database** (also change the config in _api/src/db.js_): 
 ```sql
 -- table for user
 CREATE TABLE `blog_app`.`users`(
