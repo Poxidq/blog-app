@@ -18,7 +18,7 @@ export default defineConfig(({ command, mode }) => {
     plugins: [react()],
     proxy: {
       "/api": {
-        target: "https://localhost:3000",
+        target: "https://localhost:3000", // your server address
         changeOrigin: false,
         secure: false,
         ws: true,
